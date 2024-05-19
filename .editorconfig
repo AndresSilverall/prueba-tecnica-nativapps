@@ -1,0 +1,42 @@
+
+# Aplicar reglas por defecto a todos los archivos
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+# Python
+[*.py]
+indent_size = 4
+max_line_length = 79
+
+# JavaScript
+[*.js]
+indent_size = 2
+
+# React - JavaScript y JSX
+[*.jsx]
+indent_size = 2
+
+# HTML
+[*.html]
+indent_size = 2
+
+# CSS
+[*.css]
+indent_size = 2
+
+# JSON
+[*.json]
+indent_size = 2
+
+# YAML
+[*.yaml, *.yml]
+indent_size = 2
+
+# Markdown
+[*.md]
+trim_trailing_whitespace = false
