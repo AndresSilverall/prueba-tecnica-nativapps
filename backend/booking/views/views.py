@@ -18,3 +18,12 @@ def show_all_flights(request):
             context={"request": request})
         
         return Response(data=flight_serializer.data, status=status.HTTP_200_OK)
+    
+
+
+# Solcitar una reserva de vuelo
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def booking_flight(request):
+    if request.method == "POST":
+        pass

@@ -28,7 +28,7 @@ class Flight(models.Model):
 
 
     def __str__(self):
-        return self.destination
+        return self.aeroline.name
 
 
 # Modelo para la reserva de vuelos.
