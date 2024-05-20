@@ -30,6 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # APIS
+    'authentication',
+    'booking',
+
     # Dependencias
     'rest_framework',
 ]
