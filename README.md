@@ -3,5 +3,5 @@ Prueba tecnica para el desarrollo de una API REST basada en un sistema de reverv
 
 
 
-# Modelo relacional reserva de vuelos - API REST
-<img src="assets/Modelo relacional de los datos del sistema de reserva de vuelos - API REST.jpg" alt="modelo_relacional">
+## Modelo relacional reserva de vuelos
+<img src="assets/modelo_relacional.jpg" alt="modelo_relacional.jpg"
