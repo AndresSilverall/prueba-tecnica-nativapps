@@ -27,8 +27,11 @@ def register_user(request):
                 "message": "Usuario registrado con exito!",
                 "status": status.HTTP_200_OK
             })
-        return Response(data=user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+        return Response({
+            "message":user_serializer.errors,
+            "status": status.HTTP_400_BAD_REQUEST 
+    })
+
 
 # Vista para el login de usuario.
 @api_view(["POST"])
@@ -53,3 +56,15 @@ def login_user(request):
             "message": "Usuario o contraseña incorrecta!",
             "status": status.HTTP_401_UNAUTHORIZED
         })
+    
+
+# Vista para cerrar la sesion.
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def logout_user(request):
+    if request.method == "POST":
+        logout(request)
+        return Response({
+        "message": "Sesion cerrrada!",
+        "status": status.HTTP_200_OK
+    })
