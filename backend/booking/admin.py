@@ -1,3 +1,8 @@
 from django.contrib import admin
+from booking.models.models import Aeroline, Detail, Booking, Flight
 
-# Register your models here.
+# Registrar modelos en el panel de administrador
+admin.site.register(Aeroline)
+admin.site.register(Detail)
+admin.site.register(Booking)
+admin.site.register(Flight)
