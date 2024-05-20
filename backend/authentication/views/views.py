@@ -28,3 +28,28 @@ def register_user(request):
                 "status": status.HTTP_200_OK
             })
         return Response(data=user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+# Vista para el login de usuario.
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def login_user(request):
+    """
+    Funcion que permite el login de usuario basada en las credenciales
+    de nombre de usuario y contraseña.
+
+    """
+    if request.method == "POST":
+        username = request.data.get("username")
+        password = request.data.get("password")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user=user)
+            return Response({
+                "message": "User logged",
+                "status": status.HTTP_200_OK
+            })
+        return Response({
+            "message": "Usuario o contraseña incorrecta!",
+            "status": status.HTTP_401_UNAUTHORIZED
+        })
