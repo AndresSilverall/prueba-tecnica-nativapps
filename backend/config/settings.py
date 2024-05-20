@@ -82,7 +82,6 @@ DATABASES = {
     }
 }
 
-print(os.getenv("DB_NAME"))
 
 
 # Password validation
