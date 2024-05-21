@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from booking.models.models import Flight
+from booking.models.models import Flight, Booking, Aeroline
 
 
 # Serializar los datos del modelo "Flight" a un formato JSON
@@ -10,7 +10,36 @@ class ShowAllFlightsSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+# Serializador de la reserva de vuelos 
 class BookingFlightSerializer(serializers.ModelSerializer):
+    #flight = serializers.CharField(source='flight')
     class Meta:
-        model = None
+        model = Booking
+        fields = (
+            "flight",
+            "citizenship_card",
+            "nationality",
+            "phone",
+            "passenger",
+            "preference",
+            "status"
+
+        )
+
+
+# Serializador para los vuelos disponibles
+class AerolinesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Aeroline
+        fields = ("name",)
+
+
+
+# Serializador para las reservas realizadas
+class ShowAllBookingsSerializer(serializers.ModelSerializer):
+    flight = serializers.CharField()
+    class Meta:
+        model = Booking
         fields = "__all__"
+
+
