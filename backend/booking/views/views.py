@@ -1,17 +1,18 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
-from booking.models.models import (
-    Flight,
-    Booking,
-    Aeroline
-    )
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from booking.serializers.serializers import (
     ShowAllFlightsSerializer,
     BookingFlightSerializer,
     AerolinesSerializer,
     ShowAllBookingsSerializer
+    )
+
+from booking.models.models import (
+    Flight,
+    Booking,
+    Aeroline
     )
 
 
@@ -82,3 +83,18 @@ def show_bookings(request):
         return Response(
             data=show_booking_serializer.data, status=status.HTTP_200_OK
         )
+
+
+# Funcion para cancelar reserva
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def cancel_booking(request, pk: None):
+    if request.method == "POST":
+        get_booking_by_id = Booking.objects.get(id=pk)
+        get_booking_by_id.objects.filter(status="Activo")
+        get_booking_by_id.status = "Inactivo"
+        get_booking_by_id.save()
+        return Response({
+            "message": "Vuelo cancelado con exito!",
+            "status": status.HTTP_200_OK
+        })
