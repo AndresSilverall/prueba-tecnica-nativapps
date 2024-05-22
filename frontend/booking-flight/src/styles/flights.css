@@ -1,0 +1,9 @@
+.row {
+    margin-bottom: 10px;
+}
+
+
+.img-card:hover {
+    cursor: pointer;
+    opacity: 0.3;
+}
