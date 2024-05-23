@@ -31,6 +31,23 @@ const GetAllFlights = () => {
       <div className='row'>
         {flights.map((flight) => (
           <div className='col-md-4 d-flex align-items-stretch' key={flight.id}>
+            <div key={flight.id} className="modal fade" id={`bookingModal-${flight.id}`} tabIndex="-1" aria-labelledby="bookingModal" aria-hidden="true">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="bookingModal">Reservar vuelo <FontAwesomeIcon icon={faPlane} /></h5>
+                      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                      <h3>ID del vuelo: {flight.id}</h3>
+                    </div>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" className="btn btn-outline-secondary">Reservar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <div className='card mb-4 py-4 h-90' style={{ "width": '22rem' }}>
               <img className='img-card' src={flightLogo} alt="flight.jpg" />
               <div className='card-body'>
@@ -39,7 +56,7 @@ const GetAllFlights = () => {
                 <p className='card-text lead'><FontAwesomeIcon icon={faPlaneArrival} /> {flight.destination}</p>
                 <p className='card-text lead'>{flight.description}</p>
                 <p className='card-text lead'><FontAwesomeIcon icon={faHandHoldingDollar} /> {flight.price}</p>
-                  <button className='btn btn-outline-primary text-center'>Reservar vuelo</button> 
+                  <button className='btn btn-outline-primary text-center' data-bs-toggle="modal"  data-bs-target={`#bookingModal-${flight.id}`}>Reservar vuelo</button> 
               </div>
             </div>
             <br />
