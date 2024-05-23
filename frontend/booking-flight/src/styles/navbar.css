@@ -1,3 +1,4 @@
+/* Tipo de letra de los items de la barra de navegacion*/
 .navbar .nav-item {
     font-size: larger;
     font-family:Arial, Helvetica, sans-serif;
@@ -6,6 +7,7 @@
 }
 
 
+/* Quitar los estilos por defecto que tienen los enlaces*/
 .nav-link {
     text-decoration: none;
     color: white;
@@ -19,7 +21,7 @@
 
 }
 
-
+/* Agregar opacidad y un margen al pasar el raton por los enlaces de navegacion */
 .navbar .nav-item :hover {
     cursor: pointer;
     border-style: solid;
@@ -29,8 +31,17 @@
     color: #385170;
 }
 
+
+/* Estilos para el logo del navbar*/
 .navbar-brand {
     color: aliceblue;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-left: 5px;
+}
+
+
+/* Separar los items de navegacion*/
+.nav-item {
+    margin-left: 5px;
 }

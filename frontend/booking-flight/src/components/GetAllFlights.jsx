@@ -9,7 +9,8 @@ import { faLocationDot,
         faPlane
       } from '@fortawesome/free-solid-svg-icons';
 
-// Componente para mostrar todos los vuelos disponibles
+
+//Componente para mostrar todos los vuelos disponibles
 const GetAllFlights = () => {
   const [flights, setFlights] = useState([])
 
