@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react'
 import { fetchFlights } from '../api/api_call'
-import flight from '../images/flight.jpg'
+import flightLogo from '../images/flight.jpg'
 import '../styles/flights.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, faPlaneArrival, faHandHoldingDollar } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot, 
+        faPlaneArrival, 
+        faHandHoldingDollar,
+        faPlane
+      } from '@fortawesome/free-solid-svg-icons';
 
 // Componente para mostrar todos los vuelos disponibles
 const GetAllFlights = () => {
@@ -21,21 +25,22 @@ const GetAllFlights = () => {
 
   return (
     <div className='container'>
-      <h3 className='text-center py-5'>Vuelos disponibles</h3>
+      <h3 className='text-center py-5 lead'>Vuelos disponibles <FontAwesomeIcon icon={faPlane} /></h3>
       <div className='row'>
-        {flights.map((f) => (
-          <div className='col-md-3 mb-5' key={f.id}>
-            <div className='card mb-5' style={{ width: '18rem' }}>
-              <img className='img-card' src={flight} alt="flight.jpg" />
+        {flights.map((flight) => (
+          <div className='col-md-4 d-flex align-items-stretch' key={flight.id}>
+            <div className='card mb-4 py-4 h-90' style={{ "width": '22rem' }}>
+              <img className='img-card' src={flightLogo} alt="flight.jpg" />
               <div className='card-body'>
-                <h5 className='card-title'>{f.aeroline}</h5>
-                <p className='card-text'><FontAwesomeIcon icon={faLocationDot} /> {f.origin}</p>
-                <p className='card-text'><FontAwesomeIcon icon={faPlaneArrival} /> {f.destination}</p>
-                <p className='card-text text-justify'>{f.description}</p>
-                <p className='card-text'><FontAwesomeIcon icon={faHandHoldingDollar} /> {f.price}</p>
-                <button className='btn btn-outline-primary'>Reservar vuelo</button> 
+                <h5 className='card-title text-center'>{flight.aeroline}</h5>
+                <p className='card-text lead'><FontAwesomeIcon icon={faLocationDot} /> {flight.origin}</p>
+                <p className='card-text lead'><FontAwesomeIcon icon={faPlaneArrival} /> {flight.destination}</p>
+                <p className='card-text lead'>{flight.description}</p>
+                <p className='card-text lead'><FontAwesomeIcon icon={faHandHoldingDollar} /> {flight.price}</p>
+                  <button className='btn btn-outline-primary text-center'>Reservar vuelo</button> 
               </div>
             </div>
+            <br />
           </div>     
         ))}
       </div>
