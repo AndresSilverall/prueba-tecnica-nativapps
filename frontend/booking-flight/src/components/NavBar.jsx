@@ -15,13 +15,13 @@ const NavBar = () => {
    						 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
       				<ul className="navbar-nav">
         				<li className="nav-item justify-end">
-									<Link className="nav-link" to="/"> Home </Link>
+									<Link className="nav-link text-decoration-none" to="/"> Home </Link>
         					</li>
 									<li className="nav-item">
-									<Link className="nav-link" to="/vuelos"> Vuelos disponibles </Link>
+									<Link className="nav-link text-decoration-none" to="/vuelos"> Vuelos disponibles </Link>
         					</li>
         				<li className="nav-item">
-								<Link className="nav-link" to="/reservas"> Vuelos reservados </Link>
+								<Link className="nav-link text-decoration-none" to="/reservas"> Vuelos reservados </Link>
         				</li>
       				</ul>
     			</div>

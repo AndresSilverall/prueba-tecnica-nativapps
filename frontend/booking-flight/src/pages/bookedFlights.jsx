@@ -4,8 +4,7 @@ import GetAllBookedFlights from "../components/BookedFlights";
 
 const BookedFlights = () => {
     return (
-        <div>
-            <h3>vuelos reservados</h3>
+        <div className="container">
 						<GetAllBookedFlights/>
         </div>
     )

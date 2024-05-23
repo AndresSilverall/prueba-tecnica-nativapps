@@ -1,6 +1,9 @@
 import React from "react";
 import { useState, useEffect } from 'react'
 import { fetchBookedFLights } from "../api/getBookedFlights";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
 
 
 // Componente de todas las reservas de vuelos realizadas
@@ -17,7 +20,7 @@ const GetAllBookedFlights = () => {
 
 	return (
 		<div>
-			<h3 className="text-center lead py-5">Vuelos reservados</h3>
+			<h3 className="text-center lead py-5">Vuelos reservados <FontAwesomeIcon icon={faPaperPlane} /></h3>
 			{booked.map((b) => (
 				<ul key={b.id}>
 					<li>{b.flight}</li>
