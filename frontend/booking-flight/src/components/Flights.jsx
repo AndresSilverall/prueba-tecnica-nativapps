@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { fetchFlights } from '../api/api_call'
+import { fetchFlights } from '../api/getFlights';
 import flightLogo from '../images/flight.jpg'
 import '../styles/flights.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, 
+import { 
+        faLocationDot, 
         faPlaneArrival, 
         faHandHoldingDollar,
         faPlane

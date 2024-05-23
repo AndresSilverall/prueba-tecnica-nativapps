@@ -1,8 +1,14 @@
 import React from "react";
+import GetAllBookedFlights from "../components/BookedFlights";
 
 
 const BookedFlights = () => {
-    return <div>Vuelos reservados</div>
+    return (
+        <div>
+            <h3>vuelos reservados</h3>
+						<GetAllBookedFlights/>
+        </div>
+    )
 }
 
 
