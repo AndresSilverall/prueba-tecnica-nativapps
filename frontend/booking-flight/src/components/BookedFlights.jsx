@@ -24,6 +24,7 @@ const GetAllBookedFlights = () => {
 			{booked.map((b) => (
 				<ul key={b.id}>
 					<li>{b.flight}</li>
+					<li>{b.customer}</li>
 					<li>{b.citizenship_card}</li>
 					<li>{b.nationality}</li>
 					<li>{b.phone}</li>
