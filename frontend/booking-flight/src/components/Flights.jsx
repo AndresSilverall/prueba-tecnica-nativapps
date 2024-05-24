@@ -15,6 +15,15 @@ import {
 const GetAllFlights = () => {
   const [flights, setFlights] = useState([])
 
+  // Obtener y establecer los datos del formulario
+  const [idFlight, setIdFlight] = useState("")
+  const [citizenId, setCitizenId] = useState("")
+  const [nationality, setNationality] = useState("")
+  const [phone, setPhone] = useState("")
+  const [passenger, setPassenger] = useState("")
+  const [preference, setPreference] = useState("")
+  const [status, setStaus] = useState("")
+
   const getFlights = async () => {
     const data = await fetchFlights();
     setFlights(data)
@@ -32,14 +41,41 @@ const GetAllFlights = () => {
         {flights.map((flight) => (
           <div className='col-md-4 d-flex align-items-stretch' key={flight.id}>
             <div key={flight.id} className="modal fade" id={`bookingModal-${flight.id}`} tabIndex="-1" aria-labelledby="bookingModal" aria-hidden="true">
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-dialog-scrollable">
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="bookingModal">Reservar vuelo <FontAwesomeIcon icon={faPlane} /></h5>
                       <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                      <h3>ID del vuelo: {flight.id}</h3>
+                      <div className='form-group mb-3'>
+                        <label htmlFor="aeroline">ID del vuelo</label>
+                        <input className='form-control' type="text"  id='aeroline' value={flight.id} readOnly onChange={(e) => setIdFlight(e.target.value)} name='fightId'/>
+                      </div>
+                      <div className='form-group mb-3'>
+                        <label htmlFor="citizenID">Cédula</label>
+                        <input className='form-control' type="text"  id='citizenID' value={citizenId} onChange={(e) => setCitizenId(e.target.value)} name='citizenID' placeholder='Ingrese su cédula'/>
+                      </div>
+                      <div className='form-group mb-3'>
+                        <label htmlFor="nationality">Nacionalidad</label>
+                        <input className='form-control' type="text"  id='nationality' value={nationality} onChange={(e) => setNationality(e.target.value)} name='nationality' placeholder='Ingrese su nacionalidad'/>
+                      </div>
+                      <div className='form-group mb-3'>
+                        <label htmlFor="phone">Teléfono</label>
+                        <input className='form-control' type="text"  id='phone' value={phone} onChange={(e) => setPhone(e.target.value)} name='phone' placeholder='Ingrese su teléfono'/>
+                      </div>
+                      <div className='form-group mb-3'>
+                        <label htmlFor="passengers"># de pasajeros</label>
+                        <input className='form-control' type="text"  id='passengers' value={passenger} onChange={(e) => setPassenger(e.target.value)} name='passengers' placeholder='Ingrese el numero de pasajeros a viajar'/>
+                      </div>
+                      <div className='form-group mb-3'>
+                        <label htmlFor="preference">Asiento de preferencia</label>
+                        <input className='form-control' type="text"  id='preference' value={preference} onChange={(e) => setPreference(e.target.value)} name='preference' placeholder='Ingrese su asiento de preferencia'/>
+                      </div>
+                      <div className='form-group mb-3'>
+                        <label htmlFor="status">Estado</label>
+                        <input className='form-control' type="text"  id='status' value={status} onChange={(e) => setStaus(e.target.value)} name='status' placeholder='Activo'/>
+                      </div>
                     </div>
                     <div className="modal-footer">
                       <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
