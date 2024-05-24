@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios';
 import { fetchFlights } from '../api/getFlights';
 import flightLogo from '../images/flight.jpg'
 import '../styles/flights.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-        faLocationDot, 
-        faPlaneArrival, 
-        faHandHoldingDollar,
-        faPlane
-      } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot, faPlaneArrival, faHandHoldingDollar, faPlane, faPassport} from '@fortawesome/free-solid-svg-icons';
 
 
 //Componente para mostrar todos los vuelos disponibles
@@ -24,6 +20,32 @@ const GetAllFlights = () => {
   const [preference, setPreference] = useState("")
   const [status, setStaus] = useState("")
 
+
+  // agregar los datos obtenidos del formulario
+  const bookingNewFlight = async(e) => {
+    e.preventDefaut()
+    let formField = new FormData()
+    formField.append('flight', idFlight)
+    formField.append('citizenship_card', citizenId)
+    formField.append('nationality', nationality)
+    formField.append('phone', phone)
+    formField.append('passenger', passenger)
+    formField.append('preference', preference)
+    formField.append('status', status)
+
+
+    // realizar un request de tipo POST para realizar una reserv
+    await axios({
+      method: "POST",
+      url: "http://127.0.0.1:8000/api/booking",
+      data: formField,
+    }).then((response) => {
+      console.log(response.data)
+    })
+  }
+
+
+  // Obtener vuelos disponibles
   const getFlights = async () => {
     const data = await fetchFlights();
     setFlights(data)
@@ -48,12 +70,13 @@ const GetAllFlights = () => {
                       <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
+                      <form >
                       <div className='form-group mb-3'>
-                        <label htmlFor="aeroline">ID del vuelo</label>
-                        <input className='form-control' type="text"  id='aeroline' value={flight.id} readOnly onChange={(e) => setIdFlight(e.target.value)} name='fightId'/>
+                        <label htmlFor='idFlight'>Ingrese el ID del vuelo</label>
+                        <input className='form-control' type="text"  id='idFlight' value={idFlight} onChange={(e) => setIdFlight(e.target.value)} name='idFlight'/>
                       </div>
                       <div className='form-group mb-3'>
-                        <label htmlFor="citizenID">Cédula</label>
+                        <label htmlFor='citizenID'>Cédula</label>
                         <input className='form-control' type="text"  id='citizenID' value={citizenId} onChange={(e) => setCitizenId(e.target.value)} name='citizenID' placeholder='Ingrese su cédula'/>
                       </div>
                       <div className='form-group mb-3'>
@@ -76,10 +99,11 @@ const GetAllFlights = () => {
                         <label htmlFor="status">Estado</label>
                         <input className='form-control' type="text"  id='status' value={status} onChange={(e) => setStaus(e.target.value)} name='status' placeholder='Activo'/>
                       </div>
+                      <button type='submit'  className="btn btn-outline-secondary" onClick={bookingNewFlight}>Reservar</button>
+                      </form>
                     </div>
                     <div className="modal-footer">
                       <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" className="btn btn-outline-secondary">Reservar</button>
                     </div>
                   </div>
                 </div>
@@ -88,11 +112,12 @@ const GetAllFlights = () => {
               <img className='img-card' src={flightLogo} alt="flight.jpg" />
               <div className='card-body'>
                 <h5 className='card-title text-center'>{flight.aeroline}</h5>
-                <p className='card-text lead'><FontAwesomeIcon icon={faLocationDot} /> {flight.origin}</p>
-                <p className='card-text lead'><FontAwesomeIcon icon={faPlaneArrival} /> {flight.destination}</p>
+                <p className='card-text lead'><FontAwesomeIcon icon={faLocationDot} /> Origen: {flight.origin}</p>
+                <p className='card-text lead'><FontAwesomeIcon icon={faPlaneArrival} /> Destino: {flight.destination}</p>
+                <p className='card-text lead'><FontAwesomeIcon icon={faPassport} /> ID del vuelo: {flight.id}</p>
                 <p className='card-text lead'>{flight.description}</p>
-                <p className='card-text lead'><FontAwesomeIcon icon={faHandHoldingDollar} /> {flight.price}</p>
-                  <button className='btn btn-outline-primary text-center' data-bs-toggle="modal"  data-bs-target={`#bookingModal-${flight.id}`}>Reservar vuelo</button> 
+                <p className='card-text lead'><FontAwesomeIcon icon={faHandHoldingDollar} /> Precio: {flight.price}</p>
+                  <button className='btn btn-outline-primary' data-bs-toggle="modal"  data-bs-target={`#bookingModal-${flight.id}`}>Reservar vuelo</button> 
               </div>
             </div>
             <br />

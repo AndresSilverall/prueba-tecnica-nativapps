@@ -32,7 +32,7 @@ def show_all_flights(request):
 
 # Solcitar una reserva de vuelo
 @api_view(["POST"])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def booking_flight(request):
     if request.method == "POST":
         booking_serializer = BookingFlightSerializer(data=request.data)
