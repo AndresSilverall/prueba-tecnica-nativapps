@@ -34,6 +34,7 @@ class Flight(models.Model):
 # Modelo para la reserva de vuelos.
 class Booking(models.Model):
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
+    customer = models.CharField("Cliente", max_length=25, null=False, blank=False)
     citizenship_card = models.CharField(
         "Cedula", 
         max_length=10, 
@@ -56,4 +57,4 @@ class Booking(models.Model):
 
 
     def __str__(self):
-        return self.flight.destination
+        return self.customer

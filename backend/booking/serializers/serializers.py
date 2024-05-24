@@ -17,6 +17,7 @@ class BookingFlightSerializer(serializers.ModelSerializer):
         model = Booking
         fields = (
             "flight",
+            "customer",
             "citizenship_card",
             "nationality",
             "phone",
