@@ -2,6 +2,14 @@
 Prueba tecnica para el desarrollo de una API REST basada en un sistema de reverva de vuelos, backend desarrollado con Python y el consumo de la API con React JS.
 
 
+## Tecnologías usadas
+- Python 3.8.5
+- node v21.6.2
+- MySQL WorkBench
+- Git version 2.37.2.windows.2
+- React 18.3.1
+
+
 ## Requerimientos funcionales
 - Buscar vuelos
 - Seleccionar vuelo
@@ -52,6 +60,46 @@ DB_PASSWORD= # La ontraseña de la base de datos del cliente
 DB_PORT=3306 # El puerto en el que corre la base de datos
 
 ```
+
+### Insertar información en la base de datos
+
+Para insertar los datos de manera local en su máquina, lo puede hacer directamente desde MySQL WorkBench o desde el panel de administración del backend con el fin de que los datos se puedan visualizar una vez consumida la API en el frontend.
+
+#### Desde MySQL WorkBench
+
+```sql
+CREATE DATABASE bookingFlights;
+
+-- Usar la base de datos creada
+USE bookingFlights;
+
+-- Mostrar todas las tablas disponibles de las migraciones
+SHOW TABLES;
+
+-- Tabla de aerolinea: Insertar datos
+INSERT INTO booking_aeroline (name) VALUES ("Avianca");
+
+-- Tabla de Vuelos: Insertar datos
+INSERT INTO booking_flight (
+id, origin, destination, description, price, aeroline_id
+)  VALUES (); -- Valores a ingresar
+
+-- Y lo mismo para a tabla de reservas
+INSERT INTO booking_booking(
+id, customer, citizenship_card, nationality, 
+phone, passenger, preference, status,
+created_at, flight_id
+) VALUES () -- Datos a ingresar;
+
+```
+
+#### Desde el panel de administración del backend
+
+1. Debe crear un usuario con privilegios, se crea de la siguiente forma dentro de la carpeta backend: `python manage.py createsuperuser`, le pedirá ingresar un nombre y una contraseña.
+
+2. Una vez creado el superusuario, debe ir a la siguiente dirección: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin),  estando allí, podrá ver los diferentes modelos migrados de la BD: Aerolines, Flights, Bookings y puede insertar los datos.
+
+
 
 ## Instalación y configuración del frontend
 
