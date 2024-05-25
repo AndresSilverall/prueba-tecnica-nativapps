@@ -21,11 +21,11 @@ Prueba tecnica para el desarrollo de una API REST basada en un sistema de reverv
 
 3. Una vez ya instalado navegue a la carpeta del proyecto: `cd prueba-tecnica-nativapps`
 
-4. Ingrese el siguiente comando desde la terminal para activar el entorno virtual e instalar todas las dependencias del proyecto que se encuentran alojadas en el archivo `Pipfile` del directorio raiz: `pipenv install`
+4. Ingrese el siguiente comando desde la terminal para activar el entorno virtual e instalar todas las dependencias del backend que se encuentran alojadas en el archivo `Pipfile` del directorio raiz: `pipenv install`
 
-5. Luego active el entorno virtual con el siguiente comando: `pipenv install`
+5. Luego active el entorno virtual con el siguiente comando: `pipenv shell`
 
-6. Navague hacia la carpeta backend: `cd backend`
+6. Navegue hacia la carpeta backend: `cd backend`
 
 7. Ejecutar el siguiente comando para las migraciones de la base de datos: `python manage.py makemigrations` luego ejecute `python manage.py migrate` (Es recomendable primero configurar la BD antes de ejecutar todo este punto 7)
 
@@ -45,7 +45,7 @@ CREATE DATABASE bookingFlights;
 
 ```python
 
-DB_NAME=bookingFlights # Nombre de la base de datos creada en la plataforma del cliente.
+DB_NAME=bookingFlights # Nombre de la base de datos creada en la plataforma del usuario.
 DB_HOST=localhost # El localhost donde de la base de datos (es decir la maquina en la que corre la db)
 DB_USER=root # Los privilegios de usuarios
 DB_PASSWORD= # La ontraseña de la base de datos del cliente
