@@ -41,7 +41,7 @@ Prueba tecnica para el desarrollo de una API REST basada en un sistema de reverv
 CREATE DATABASE bookingFlights;
 
 ```
-2. Una vez creada la base de datos debe agregar las credenciales de acceso en el archivo `.env` del directorio raiz del proyecto:
+2. Una vez creada la base de datos debe agregar las credenciales de acceso en el archivo `.env` el cual contiene las variables de entorno:
 
 ```python
 
