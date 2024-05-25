@@ -36,13 +36,14 @@ const GetAllFlights = () => {
     formField.append('preference', preference)
     formField.append('status', status)
 
-    // realizar un request de tipo POST para realizar una reserv
+    
+    // realizar un request de tipo POST para realizar una reserva
     await axios.post(
       "http://127.0.0.1:8000/api/booking",
       formField, 
       ).then((response) => {
-      navigate("/vuelos")
       alert("Vuelo reservado con exito!")
+      navigate("/vuelos")
       console.log(response.data)
     })
   }

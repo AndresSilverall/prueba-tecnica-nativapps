@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import { fetchBookedFLights } from "../api/getBookedFlights";
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faToggleOn, faPlane, faBan } from '@fortawesome/free-solid-svg-icons';
 import flightBooked from '../images/booked.jpg';
@@ -10,6 +11,7 @@ import flightBooked from '../images/booked.jpg';
 
 // Componente de todas las reservas de vuelos realizadas
 const GetAllBookedFlights = () => {
+	const navigate = useNavigate;
 	const [booked, setBooked] = useState([]);
 	const getBooked = async () => {
 		const data = await fetchBookedFLights();
@@ -17,9 +19,10 @@ const GetAllBookedFlights = () => {
 	}
 
 
-	// Cancelar reserva
+	// Cancelar reserva por medio de la ID de la reserva
 	const cancelBooking = async (id) => {
 		await axios.delete(`http://127.0.0.1:8000/api/cancel_booking/${id}`) 
+		navigate("/reservas")
 	}
 
 
@@ -46,7 +49,9 @@ const GetAllBookedFlights = () => {
 										<h3>¿Seguro que deseas cancelar esta reserva de vuelo de ID {booking.id}?</h3>
 								</div>
 								<div className="modal-footer">
-									<button type="button" className="btn btn-outline-danger" onClick={() => {cancelBooking(booking.id)}}>Si</button>
+									<form action="/reservas" method="delete">
+									<button type="submit" className="btn btn-outline-danger" onClick={() => {cancelBooking(booking.id)}}>Si</button>
+									</form>
 									<button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">No</button>
 								</div>
 							</div>
@@ -58,7 +63,6 @@ const GetAllBookedFlights = () => {
 								<div className="modal-header">
 									<h5 className="modal-title" id="exampleModalLabel">Detalles de la reserva <FontAwesomeIcon icon={faPlane} /></h5>
 									<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
-										<span aria-bs-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div className="modal-body">
