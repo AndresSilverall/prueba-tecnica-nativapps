@@ -9,6 +9,7 @@
 }
 
 
+/* Justificar el text de las cards*/
 .card .card-text {
-    align-items: center;
+    text-align: justify;
 }

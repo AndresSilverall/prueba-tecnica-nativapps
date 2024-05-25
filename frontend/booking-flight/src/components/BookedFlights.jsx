@@ -1,8 +1,9 @@
 import React from "react";
+import axios from 'axios';
 import { useState, useEffect } from 'react'
 import { fetchBookedFLights } from "../api/getBookedFlights";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faToggleOn, faPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faToggleOn, faPlane, faBan } from '@fortawesome/free-solid-svg-icons';
 import flightBooked from '../images/booked.jpg';
 
 
@@ -15,6 +16,13 @@ const GetAllBookedFlights = () => {
 		setBooked(data)
 	}
 
+
+	// Cancelar reserva
+	const cancelBooking = async (id) => {
+		await axios.delete(`http://127.0.0.1:8000/api/cancel_booking/${id}`) 
+	}
+
+
 	useEffect(() => {
 		getBooked();
 	},[])
@@ -26,12 +34,30 @@ const GetAllBookedFlights = () => {
 			{booked.map((booking) =>  (
 				<div className='col-md-4 d-flex align-items-stretch'>
 				<div key={booking.id} className="card mb-4 py-4 h-90" style={{ width: '22rem' }}>
+				<div key={booking.id} className="modal fade" id={`cancelFlight-${booking.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div className="modal-dialog" role="document">
+							<div className="modal-content">
+								<div className="modal-header">
+									<h5 className="modal-title" id={`cancelFlight-${booking.id}`}>Cancelar reserva <FontAwesomeIcon icon={faBan} /></h5>
+									<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+									</button>
+								</div>
+								<div className="modal-body">
+										<h3>¿Seguro que deseas cancelar esta reserva de vuelo de ID {booking.id}?</h3>
+								</div>
+								<div className="modal-footer">
+									<button type="button" className="btn btn-outline-danger" onClick={() => {cancelBooking(booking.id)}}>Si</button>
+									<button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">No</button>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div key={booking.id} className="modal fade" id={`bookedFlight-${booking.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div className="modal-dialog" role="document">
 							<div className="modal-content">
 								<div className="modal-header">
 									<h5 className="modal-title" id="exampleModalLabel">Detalles de la reserva <FontAwesomeIcon icon={faPlane} /></h5>
-									<button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+									<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
 										<span aria-bs-hidden="true">&times;</span>
 									</button>
 								</div>
@@ -54,7 +80,7 @@ const GetAllBookedFlights = () => {
 						<p className="card-text lead text-center"><FontAwesomeIcon icon={faToggleOn} /> Estado: {booking.status}</p>
 						<div className="text-center d-flex btn-group">
 							<button className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target={`#bookedFlight-${booking.id}`}>Ver más detalles</button>
-							<button className="btn btn-outline-danger" data-bs-toggle="modal" >Cancelar reserva</button>
+							<button className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target={`#cancelFlight-${booking.id}`}>Cancelar reserva</button>
 					</div>
 					</div>
 				</div>

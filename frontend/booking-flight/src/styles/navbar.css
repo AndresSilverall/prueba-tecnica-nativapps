@@ -41,7 +41,17 @@
 }
 
 
+.navbar-brand:hover {
+    color: darkgray;
+}
+
+
 /* Separar los items de navegacion*/
 .nav-item {
     margin-left: 5px;
+}
+
+
+a:visited {
+    color: #ffffff;
 }

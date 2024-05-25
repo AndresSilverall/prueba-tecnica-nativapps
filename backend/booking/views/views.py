@@ -86,14 +86,12 @@ def show_bookings(request):
 
 
 # Funcion para cancelar reserva
-@api_view(["POST"])
-@permission_classes([IsAuthenticated])
+@api_view(["DELETE"])
+@permission_classes([AllowAny])
 def cancel_booking(request, pk: None):
-    if request.method == "POST":
+    if request.method == "DELETE":
         get_booking_by_id = Booking.objects.get(id=pk)
-        get_booking_by_id.objects.filter(status="Activo")
-        get_booking_by_id.status = "Inactivo"
-        get_booking_by_id.save()
+        get_booking_by_id.delete()
         return Response({
             "message": "Vuelo cancelado con exito!",
             "status": status.HTTP_200_OK
